@@ -1,14 +1,16 @@
-alert("Boas vindas ao jogo do número secreto");
-alert("O número está entre 0 e 100");
-alert("Escolha o número certo para finalizar");
-
-let secretRandomNumber = Math.floor(Math.random() * 101);
+let maxNumber = 100;
+let secretRandomNumber = Math.floor(Math.random() * (maxNumber + 1));
 let correctSecretRandomNumber = false;
 let numberSecretHistory = new Map();
+let tries = 5;
+let counter = 1;
+alert("Boas vindas ao jogo do número secreto");
+alert(`O número está entre 0 e ${maxNumber}`);
+alert("Escolha o número certo para finalizar");
 
 const winMessage = document.getElementsByClassName("invisivel")[0];
 
-while (!correctSecretRandomNumber) {
+while (!correctSecretRandomNumber && counter <= tries) {
   let guess = Number(prompt("Escolha o número: "));
 
   if (guess == secretRandomNumber) {
@@ -25,4 +27,9 @@ while (!correctSecretRandomNumber) {
       }
     }
   }
+  counter++;
+}
+
+if (counter == tries && correctSecretRandomNumber) {
+  alert("O número secreto é: " + secretRandomNumber);
 }
